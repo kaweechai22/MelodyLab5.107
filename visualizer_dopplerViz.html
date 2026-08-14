@@ -1,69 +1,641 @@
-<!DOCTYPE html><html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>MelodyLab v5.267 - Full App UI Polish</title><meta name="description" content="MelodyLab ห้องทดลองเสียงและเก็บข้อมูล ด้วยมือถือ"><meta name="theme-color" content="#0f172a"><link rel="manifest" href="manifest.json"><link rel="icon" type="image/png" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><link rel="stylesheet" href="style.css"><meta name="melodylab-build-version" content="v5.267-full-app-ui-polish"></head><body class="detailPage page-visualizer"><header><div class="wrap nav detailNav"><button class="backBtn" onclick="location.href='visualizer.html'">←</button><a class="brand" href="index.html"><img src="icon-192.png" alt="MelodyLab"><span>Doppler Effect</span></a></div></header>
-<style>
-.dopplerPage{--bg:#071426;--panel:rgba(15,23,42,.72);--panel2:rgba(15,23,42,.55);--line:rgba(148,163,184,.18);--cyan:#22d3ee;--blue:#3b82f6;--green:#7cfc42;--purple:#a78bfa;--gold:#fbbf24;--pink:#fb7185}.dopplerHead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:end;margin-bottom:16px}.dopplerHead h2{margin-bottom:6px}.dopplerLead{color:#cbd5e1;font-weight:800;margin:0}.dopVersion{display:inline-block;color:#7dd3fc;font-weight:950;font-size:.82rem;margin-top:4px}.dopTransportTop{display:flex;align-items:center;gap:10px;border:1px solid rgba(125,211,252,.16);background:linear-gradient(135deg,rgba(14,165,233,.14),rgba(124,58,237,.15));border-radius:22px;padding:10px;box-shadow:0 18px 44px rgba(0,0,0,.20)}.dopTransportTop button{border:1px solid rgba(255,255,255,.12);border-radius:16px;color:#fff;font-weight:950;padding:12px 18px;min-width:112px;display:inline-flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 10px 24px rgba(0,0,0,.18)}.dopPlay{background:linear-gradient(135deg,#20d5c4,#0ea5e9)}.dopPause{background:linear-gradient(135deg,#3b82f6,#2563eb)}.dopReset{background:linear-gradient(135deg,#8b5cf6,#6d28d9)}.dopTransportTop svg{width:20px;height:20px;fill:currentColor;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.dopplerGrid{display:grid;grid-template-columns:minmax(0,1.38fr) minmax(318px,.62fr);gap:16px;align-items:start}.dopStageCard,.dopControlCard,.dopExportCard{border-radius:24px;background:linear-gradient(180deg,rgba(15,23,42,.78),rgba(15,23,42,.58));border:1px solid rgba(125,211,252,.18);box-shadow:0 24px 58px rgba(0,0,0,.22);overflow:hidden}.dopStageHeader{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.dopStagePill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;border:1px solid rgba(125,211,252,.22);background:rgba(15,23,42,.56);padding:8px 12px;color:#e0f2fe;font-weight:950}.dopMiniStat{display:flex;gap:8px;flex-wrap:wrap}.dopMiniStat span{border:1px solid rgba(148,163,184,.16);background:rgba(15,23,42,.56);border-radius:999px;padding:7px 10px;color:#e2e8f0;font-weight:950;font-size:.82rem}.dopCanvas{width:100%;height:min(52vh,520px);min-height:320px;display:block;border-radius:22px;background:#071426;border:1px solid rgba(125,211,252,.18)}.dopStageActions{display:grid;grid-template-columns:minmax(180px,.9fr) minmax(220px,1.08fr) minmax(190px,.85fr);gap:8px;margin-top:10px}.dopSoundBar,.dopQuickListen,.dopHeardBox{border:1px solid rgba(148,163,184,.15);background:rgba(15,23,42,.48);border-radius:17px;padding:9px 10px}.dopSoundBar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.dopSoundBar button{border-radius:14px;font-weight:950}.dopSoundLabel{font-weight:900;color:#cbd5e1;font-size:.82rem}.dopQuickListen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.dopQuickListen button{border:1px solid rgba(148,163,184,.20);background:rgba(15,23,42,.64);color:#e2e8f0;border-radius:14px;padding:9px 7px;font-weight:950}.dopQuickListen button.active{border-color:rgba(34,211,238,.70);background:linear-gradient(135deg,rgba(34,211,238,.24),rgba(59,130,246,.13))}.dopHeardBox span{display:block;color:#94a3b8;font-size:.74rem;font-weight:850}.dopHeardBox b{display:block;color:#e0f2fe;font-size:1.18rem;line-height:1.1}.dopHeardBox small{display:block;color:#cbd5e1;font-weight:800;font-size:.72rem}.dopInfoStrip{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(110px,.55fr));gap:8px;margin-top:10px}.dopNote,.dopPhysicsStat{border:1px solid rgba(125,211,252,.16);background:rgba(15,23,42,.46);border-radius:18px;padding:11px;color:#cbd5e1}.dopNote{display:flex;align-items:center;gap:10px}.dopBulb{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none;background:linear-gradient(135deg,rgba(34,211,238,.25),rgba(59,130,246,.12));border:1px solid rgba(125,211,252,.28);font-size:1.35rem}.dopNote p{margin:0;font-weight:850;font-size:.82rem;line-height:1.42}.dopPhysicsStat span{display:block;color:#94a3b8;font-weight:850;font-size:.72rem}.dopPhysicsStat b{display:block;color:#e2e8f0;font-size:1.12rem}.dopControlCard h3{margin:0 0 8px;text-align:center}.dopControl{border:1px solid rgba(148,163,184,.16);background:rgba(15,23,42,.47);border-radius:18px;padding:12px;margin:10px 0}.dopControl label{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#e2e8f0;font-weight:950}.dopControl small{display:block;color:#94a3b8;font-size:.72rem;font-weight:800;margin:4px 0 8px}.dopControl input[type=range]{width:100%}.dopControl select{width:100%;border-radius:13px}.dopValue{display:inline-flex;align-items:center;justify-content:center;min-width:74px;border:1px solid rgba(148,163,184,.18);background:rgba(15,23,42,.72);border-radius:12px;padding:6px 8px;color:#f8fafc;font-weight:950}.dopFormulaGrid{display:grid;gap:8px;margin-top:10px}.dopFormula{border-radius:16px;padding:11px;border:1px solid rgba(148,163,184,.16);background:rgba(15,23,42,.45)}.dopFormula b{display:block;color:#e2e8f0;font-size:.82rem}.dopFormula code{display:block;text-align:center;color:#f8fafc;font-size:1.05rem;font-weight:950;margin:5px 0}.dopFormula.front{border-color:rgba(124,252,66,.28);background:linear-gradient(180deg,rgba(34,197,94,.12),rgba(15,23,42,.48))}.dopFormula.back{border-color:rgba(167,139,250,.28);background:linear-gradient(180deg,rgba(124,58,237,.13),rgba(15,23,42,.48))}.dopExportCard{margin-top:16px}.dopExportCard .actions{display:flex;flex-wrap:wrap;gap:8px}.dopShockBridge{margin-top:10px;border:1px solid rgba(251,191,36,.22);background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(15,23,42,.52));border-radius:17px;padding:10px;color:#fde68a;font-weight:850;display:flex;justify-content:space-between;gap:10px;align-items:center}.dopShockBridge a{color:#fef3c7;text-decoration:none;border:1px solid rgba(251,191,36,.28);border-radius:999px;padding:7px 10px;background:rgba(15,23,42,.55);white-space:nowrap}.dopRunning .dopPlay{box-shadow:0 0 0 2px rgba(34,211,238,.18) inset,0 0 26px rgba(34,211,238,.22)}.dopPaused .dopPause{box-shadow:0 0 0 2px rgba(147,197,253,.18) inset,0 0 26px rgba(59,130,246,.20)}@media(max-width:640px){.dopTransportTop{gap:7px;padding:8px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}.dopTransportTop button{min-width:0;padding:10px 8px;font-size:.86rem}.dopCanvas{height:min(44vh,340px);min-height:260px}.dopInfoStrip{grid-template-columns:1fr}.dopStageHeader{align-items:flex-start;flex-direction:column}.dopQuickListen{grid-template-columns:repeat(3,minmax(0,1fr))}.dopShockBridge{align-items:flex-start;flex-direction:column}.dopStageCard,.dopControlCard{padding:14px}.dopSoundBar,.dopQuickListen,.dopHeardBox{padding:10px}.dopMiniStat span{font-size:.76rem}}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MelodyLab v5.270 - Doppler Effect Core Style</title>
+  <meta name="description" content="MelodyLab ห้องทดลองเสียงและเก็บข้อมูล ด้วยมือถือ">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <meta name="melodylab-build-version" content="v5.270-doppler-core-style">
+  <style>
+    #visualizer[data-viz-mode="dopplerEffect"] .versionBadge{
+      display:inline-flex;margin-top:10px;padding:8px 14px;border-radius:999px;
+      background:rgba(16,185,129,.14);border:1px solid rgba(52,211,153,.35);
+      color:#bbf7d0;font-weight:900
+    }
+    #visualizer[data-viz-mode="dopplerEffect"] #visualizerCanvas{
+      display:block;width:100% !important;height:min(54vh,480px) !important;
+      min-height:360px !important;max-height:480px !important;aspect-ratio:auto !important
+    }
+    .dopplerReadoutBar{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:10px}
+    .dopplerReadoutBar>div{border:1px solid rgba(148,163,184,.18);background:rgba(15,23,42,.48);border-radius:14px;padding:9px 11px;min-height:58px}
+    .dopplerReadoutBar label{display:block;color:#94a3b8;font-size:.76rem;line-height:1.2;margin-bottom:4px;font-weight:800}
+    .dopplerReadoutBar b{display:block;color:#e5eef8;font-size:.98rem;line-height:1.18}
+    .dopplerReadoutBar .high b{color:#bbf7d0}
+    .dopplerReadoutBar .low b{color:#ddd6fe}
+    .dopplerReadoutBar .heard b{color:#7dd3fc}
+    .dopplerFormulaGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+    .dopplerFormulaBox{border:1px solid rgba(148,163,184,.18);background:rgba(15,23,42,.50);border-radius:16px;padding:12px}
+    .dopplerFormulaBox b{display:block;color:#e5eef8;margin-bottom:6px}
+    .dopplerFormulaBox code{display:block;text-align:center;color:#f8fafc;font-size:1.02rem;font-weight:900}
+    .dopplerLegend .legendLine{width:36px;height:4px;border-radius:999px;display:inline-block}
+    .dopplerLegend .waveLine{background:#38bdf8;box-shadow:0 0 10px rgba(56,189,248,.45)}
+    .dopplerLegend .frontLine{background:#22c55e;box-shadow:0 0 10px rgba(34,197,94,.45)}
+    .dopplerLegend .backLine{background:#a78bfa;box-shadow:0 0 10px rgba(167,139,250,.45)}
+    .dopplerLegend .sourceDot{width:12px;height:12px;border-radius:999px;background:#f59e0b;display:inline-block}
+    .dopDirectionIcon{background:linear-gradient(135deg,#0ea5e9,#38bdf8)}
+    .dopFreqIcon{background:linear-gradient(135deg,#7c3aed,#a855f7)}
+    .dopVsIcon{background:linear-gradient(135deg,#22c55e,#86efac)}
+    .dopVIcon{background:linear-gradient(135deg,#f59e0b,#f97316)}
+    .dopListenIcon{background:linear-gradient(135deg,#06b6d4,#3b82f6)}
+    .dopTimeIcon{background:linear-gradient(135deg,#6366f1,#a78bfa)}
+    .dopAudioIcon{background:linear-gradient(135deg,#16a34a,#22c55e)}
+    .dopplerAudioRow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .dopAudioStatus{color:#bbf7d0;font-size:.82rem;font-weight:850}
+    .dopplerExportActions{display:flex;gap:8px;flex-wrap:wrap}
+    @media(max-width:860px){
+      #visualizer[data-viz-mode="dopplerEffect"] #visualizerCanvas{height:min(50vh,420px) !important;min-height:330px !important}
+      .dopplerReadoutBar{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .dopplerFormulaGrid{grid-template-columns:1fr}
+    }
+    @media(max-width:640px){
+      #visualizer[data-viz-mode="dopplerEffect"] #visualizerCanvas{height:min(42vh,330px) !important;min-height:270px !important}
+      .dopplerReadoutBar{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+      .dopplerReadoutBar>div{padding:8px 9px;min-height:54px}
+      .dopplerReadoutBar label{font-size:.71rem}
+      .dopplerReadoutBar b{font-size:.90rem}
+      .dopplerExportActions button{flex:1 1 120px}
+    }
+  </style>
+</head>
+<body class="detailPage page-visualizer">
+<header>
+  <div class="wrap nav detailNav">
+    <button class="backBtn" onclick="location.href='visualizer.html'">←</button>
+    <a class="brand" href="index.html"><img src="icon-192.png" alt="MelodyLab"><span>Doppler Effect (ปรากฏการณ์ดอปเพลอร์)</span></a>
+  </div>
+</header>
 
-/* v5.264: desktop mockup alignment */
-.dopplerPage{max-width:1600px;margin:0 auto}
-.detailMain.wrap{max-width:1600px;width:min(100% - 36px,1600px)}
-.dopplerHead h2{font-size:clamp(2.0rem,3vw,3.05rem);line-height:1.06}
-.dopplerLead{font-size:clamp(.92rem,1.15vw,1.12rem)}
-.dopTransportTop{padding:12px;border-radius:24px}
-.dopTransportTop button{min-width:148px;padding:15px 22px;font-size:1.12rem;border-radius:18px}
-.dopplerGrid{grid-template-columns:minmax(0,1fr) minmax(310px,340px);gap:18px}
-.dopStageCard{padding:16px}
-.dopControlCard{padding:18px}
-.dopCanvas{height:min(58vh,620px);min-height:500px}
-.dopStageActions{grid-template-columns:minmax(210px,.85fr) minmax(270px,1.05fr) minmax(220px,.85fr)}
-.dopInfoStrip{grid-template-columns:minmax(0,1.45fr) repeat(3,minmax(155px,.55fr))}
-@media(max-width:900px){.dopplerHead{grid-template-columns:1fr}.dopTransportTop{width:100%;justify-content:center}.dopplerGrid{grid-template-columns:1fr}.dopCanvas{height:min(48vh,420px)}.dopStageActions{grid-template-columns:1fr}.dopInfoStrip{grid-template-columns:1fr 1fr}.dopNote{grid-column:1/-1}}
+<main class="wrap detailMain" data-current="visualizer">
+<section class="section activeDetail visualizerSinglePage visualizerTemplatePage longitudinalFocusPage rebuiltTopicPage" id="visualizer" data-viz-mode="dopplerEffect">
+  <div class="sectionHead templateHead">
+    <div>
+      <h2>Doppler Effect (ปรากฏการณ์ดอปเพลอร์)</h2>
+      <p class="sectionLead">จำลองแหล่งกำเนิดเสียงเคลื่อนที่ผ่านผู้ฟังซ้าย–ขวา เพื่อดูหน้าคลื่นที่ถูกบีบ/ยืด และความถี่ที่ผู้ฟังได้ยิน</p>
+      <span class="versionBadge">v5.270 • Core Visual Style</span>
+    </div>
+  </div>
 
+  <div class="visualizerTemplateGrid longitudinalFocusGrid">
+    <div class="card mainViz templateMainViz longitudinalMainViz">
+      <div class="vizMediaFrame">
+        <div class="vizSingleModeLabel"><span>🚙</span> Doppler Effect (แหล่งกำเนิดเสียงเคลื่อนที่)</div>
+        <canvas id="visualizerCanvas" width="1200" height="440" aria-label="ภาพจำลองปรากฏการณ์ดอปเพลอร์"></canvas>
+        <div class="vizPlayerBar embeddedPlayerBar" aria-label="ปุ่มควบคุมภาพจำลอง">
+          <div class="playerCluster playerCenter playerCenterOnly">
+            <button id="vizPlayBtn" class="playerBtn playerPrimary playerPlay" title="เล่น" aria-label="เล่น"><span class="playerGlyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 6.5v11l9-5.5-9-5.5z"/></svg></span></button>
+            <button id="vizPauseBtn" class="playerBtn playerPause" title="หยุด" aria-label="หยุด"><span class="playerGlyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="6" width="3.5" height="12" rx="1.2"/><rect x="13.5" y="6" width="3.5" height="12" rx="1.2"/></svg></span></button>
+            <button id="vizResetBtn" class="playerBtn playerReset" title="รีเซ็ต" aria-label="รีเซ็ต"><span class="playerGlyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 12a7 7 0 1 1-2.05-4.95"/><path d="M19 5v5h-5"/></svg></span></button>
+            <button id="vizScreenBtn" class="playerBtn playerShot" title="บันทึกภาพ PNG" aria-label="บันทึกภาพ PNG"><span class="playerGlyph" aria-hidden="true">📷</span></button>
+          </div>
+        </div>
+      </div>
 
-/* v5.267 Doppler balance and mobile tuning */
-.dopplerPage{max-width:1360px;margin:0 auto}
-.detailMain.wrap{max-width:1360px}
-.dopplerHead{align-items:center}
-.dopTransportTop{padding:9px;border-radius:20px}
-.dopTransportTop button{min-width:118px;padding:12px 16px;font-size:1rem}
-.dopplerGrid{grid-template-columns:minmax(0,1.22fr) minmax(300px,.78fr);gap:16px}
-.dopStageCard{overflow:hidden}
-.dopCanvas{height:min(50vh,500px);min-height:340px}
-.dopStageActions{grid-template-columns:minmax(180px,.9fr) minmax(220px,1fr) minmax(180px,.9fr);gap:8px}
-.dopInfoStrip{grid-template-columns:minmax(0,1.35fr) repeat(3,minmax(130px,.55fr))}
-.dopControlCard h3{font-size:1.12rem}
-.dopControl{margin:8px 0;padding:11px;border-radius:17px}
-.dopFormulaGrid{grid-template-columns:1fr}
-.dopExportCard{margin-top:14px}
-@media(max-width:900px){
-  .dopplerHead{grid-template-columns:1fr}
-  .dopTransportTop{width:100%;justify-content:center}
-  .dopplerGrid{grid-template-columns:1fr}
-  .dopCanvas{height:min(48vh,420px);min-height:300px}
-  .dopStageActions{grid-template-columns:1fr}
-  .dopInfoStrip{grid-template-columns:1fr 1fr}
-  .dopNote{grid-column:1/-1}
-}
-@media(max-width:640px){
-  .dopplerPage .dopplerHead h2{font-size:clamp(1.7rem,8vw,2.35rem)}
-  .dopplerLead{font-size:.92rem;line-height:1.45}
-  .dopTransportTop{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-  .dopTransportTop button{min-width:0;padding:10px 8px;font-size:.9rem;border-radius:16px}
-  .dopTransportTop svg{width:17px;height:17px}
-  .dopStageHeader{align-items:flex-start;flex-direction:column}
-  .dopMiniStat{width:100%}
-  .dopMiniStat span{font-size:.76rem;padding:6px 9px}
-  .dopCanvas{height:min(42vh,330px);min-height:260px;border-radius:18px}
-  .dopQuickListen{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .dopQuickListen button{font-size:.82rem;padding:8px 6px}
-  .dopInfoStrip{grid-template-columns:1fr}
-  .dopPhysicsStat b{font-size:1.05rem}
-  .dopControlCard,.dopStageCard,.dopExportCard{border-radius:20px}
-  .dopControl label{font-size:.94rem;align-items:flex-start}
-  .dopValue{min-width:68px}
-  .dopShockBridge{align-items:flex-start;flex-direction:column}
-}
+      <div class="dopplerReadoutBar">
+        <div><label>ความถี่ต้นฉบับ f</label><b id="dopF0Out">--</b></div>
+        <div><label>อัตราเร็วเสียง v</label><b id="dopVOut">--</b></div>
+        <div><label>ความเร็วแหล่งกำเนิด vₛ</label><b id="dopVsOut">--</b></div>
+        <div id="dopLeftCard" class="low"><label>ผู้ฟังซ้าย</label><b id="dopLeftOut">--</b></div>
+        <div id="dopRightCard" class="high"><label>ผู้ฟังขวา</label><b id="dopRightOut">--</b></div>
+        <div class="heard"><label>เสียงที่เลือกฟัง</label><b id="dopHeardOut">--</b></div>
+      </div>
 
-</style>
-<main class="wrap detailMain" data-current="visualizer"><section class="section activeDetail visualizerSinglePage visualizerTemplatePage dopplerPage" id="visualizer" data-viz-mode="dopplerEffect"><div class="dopplerHead"><div><h2>13. Doppler Effect (ปรากฏการณ์ดอปเพลอร์)</h2><p class="dopplerLead">เมื่อแหล่งกำเนิดเสียงเคลื่อนที่ ความถี่เสียงที่ผู้ฟังได้รับจะเปลี่ยนไปตามทิศทางการเคลื่อนที่</p><span class="dopVersion">v5.267 • Full UI Polish</span></div><div class="dopTransportTop" id="dopTransport"><button id="dopPlayBtn" class="dopPlay" type="button" aria-label="เล่น"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5-10-6.5z"/></svg>เล่น</button><button id="dopPauseBtn" class="dopPause" type="button" aria-label="หยุด"><svg viewBox="0 0 24 24"><rect x="7" y="5" width="3.8" height="14" rx="1.2"/><rect x="13.2" y="5" width="3.8" height="14" rx="1.2"/></svg>หยุด</button><button id="dopResetBtn" class="dopReset" type="button" aria-label="รีเซ็ต"><svg viewBox="0 0 24 24" fill="none"><path d="M19 12a7 7 0 1 1-2.05-4.95"/><path d="M19 5v5h-5"/></svg>รีเซ็ต</button></div></div><div class="dopplerGrid"><div class="card dopStageCard"><div class="dopStageHeader"><span class="dopStagePill">🚙 แสดงหน้าคลื่นเสียง</span><div class="dopMiniStat"><span id="ratioBadge">vₛ/v = --</span><span id="speedBadge">v = --</span></div></div><canvas id="dopCanvas" class="dopCanvas" width="1280" height="640" aria-label="ภาพจำลองปรากฏการณ์ดอปเพลอร์"></canvas><div class="dopStageActions"><div class="dopSoundBar"><button id="dopSoundBtn" class="secondary" type="button">🔊 เปิดเสียง</button><span id="dopSoundLabel" class="dopSoundLabel">ยังไม่เปิดเสียง</span></div><div class="dopQuickListen" aria-label="ปุ่มเทียบเสียงเร็ว"><button type="button" data-listen="source">ต้นฉบับ</button><button type="button" data-listen="left">ฟังซ้าย</button><button type="button" data-listen="right">ฟังขวา</button></div><div class="dopHeardBox"><span>f ที่ได้ยิน</span><b id="heardFreqLabel">--</b><small id="heardHintLabel">เลือกผู้ฟังเพื่อเทียบเสียง</small></div></div><div class="dopInfoStrip"><div class="dopNote"><div class="dopBulb">💡</div><p id="mainExplain">เมื่อแหล่งกำเนิดเสียงเคลื่อนที่เข้าหาผู้ฟัง หน้าคลื่นจะถูกบีบให้ถี่ขึ้น ผู้ฟังจึงได้ยินเสียงสูงขึ้น</p></div><div class="dopPhysicsStat"><span>ความถี่แหล่งกำเนิด f</span><b id="statF0">--</b></div><div class="dopPhysicsStat"><span>ความเร็วแหล่งกำเนิด vₛ</span><b id="statVs">--</b></div><div class="dopPhysicsStat"><span>อัตราเร็วเสียง v</span><b id="statV">--</b></div></div></div><div class="card dopControlCard"><h3>ตั้งค่าการจำลอง</h3><div class="dopControl"><label>ทิศทางการเคลื่อนที่ <span class="dopValue" id="dirLabel">ขวา</span></label><small>เมื่อเปลี่ยนทิศทาง ค่าของผู้ฟังซ้าย/ขวาจะสลับกัน</small><select id="dopDirection"><option value="right" selected>ไปทางขวา</option><option value="left">ไปทางซ้าย</option></select></div><div class="dopControl"><label>ความถี่แหล่งกำเนิด f <span class="dopValue" id="freqLabel">120 Hz</span></label><small>เสียงต้นฉบับจากแหล่งกำเนิด</small><input id="dopFreq" type="range" min="20" max="1000" step="5" value="120"></div><div class="dopControl"><label>ความเร็วแหล่งกำเนิด vₛ <span class="dopValue" id="sourceSpeedLabel">167 m/s</span></label><small>ถ้า vₛ = 0 รถหยุดนิ่ง และผู้ฟังสองด้านได้ยินเท่ากัน</small><input id="dopSourceSpeed" type="range" min="0" max="295" step="1" value="167"></div><div class="dopControl"><label>อัตราเร็วเสียง v <span class="dopValue" id="speedLabel">328 m/s</span></label><small>เช่น อากาศปกติประมาณ 343 m/s</small><input id="dopSpeed" type="range" min="200" max="400" step="1" value="328"></div><div class="dopControl"><label>ความเร็วภาพ <span class="dopValue" id="timeLabel">1.4×</span></label><small>ปรับเพื่อดูการเคลื่อนที่ให้ชัด</small><input id="dopTimeSpeed" type="range" min="0.10" max="2.00" step="0.10" value="1.40"></div><select id="dopListen" hidden><option value="right" selected>ผู้ฟังด้านขวา</option><option value="left">ผู้ฟังด้านซ้าย</option><option value="source">เสียงต้นฉบับ</option></select><div class="dopFormulaGrid"><div class="dopFormula front"><b>เข้าใกล้ผู้ฟัง</b><code>f′ = f · v / (v − vₛ)</code></div><div class="dopFormula back"><b>ออกห่างผู้ฟัง</b><code>f′ = f · v / (v + vₛ)</code></div></div><div class="dopShockBridge"><span>ถ้า vₛ เข้าใกล้ v จะเชื่อมโยงไปสู่ Shock Wave</span><a href="visualizer_shock_wave.html">ไป Shock Wave →</a></div></div></div><div class="card dopExportCard localExportCard templateExportCard" data-export-name="dopplerEffect"><div class="panelTitleStack"><h3>บันทึกผล</h3><p class="panelSubtext">เก็บค่าความถี่ที่ผู้ฟังแต่ละด้านได้ยิน</p></div><div class="actions"><button id="dopCaptureBtn" class="secondary localCaptureBtn">บันทึกค่า</button><button id="dopDownloadBtn" class="secondary localDownloadBtn">ดาวน์โหลดตาราง</button><button id="dopPngBtn" class="secondary localPngBtn">บันทึกภาพ</button><button id="dopClearBtn" class="secondary localClearBtn">ล้างข้อมูล</button></div><div class="tableWrap localLogWrap"><table><thead><tr id="dopHead"></tr></thead><tbody id="dopBody"></tbody></table></div></div></section></main>
+      <details class="explainDetails">
+        <summary>คำอธิบายเพิ่มเติม</summary>
+        <div class="detailsBody">
+          <div class="templateUnderCanvas explainGrid">
+            <div class="templateInsightCard">
+              <div class="insightTitle">สาระสำคัญที่ควรสังเกต</div>
+              <ul>
+                <li>ด้านที่แหล่งกำเนิดเคลื่อนที่เข้าใกล้ ผู้ฟังจะได้ยินความถี่สูงขึ้น เพราะหน้าคลื่นถูกบีบให้ถี่ขึ้น</li>
+                <li>ด้านที่แหล่งกำเนิดเคลื่อนที่ออกห่าง ผู้ฟังจะได้ยินความถี่ต่ำลง เพราะหน้าคลื่นถูกยืดให้ห่างขึ้น</li>
+                <li>ถ้า vₛ = 0 ผู้ฟังทั้งสองด้านจะได้ยินความถี่เท่ากับแหล่งกำเนิด</li>
+                <li>แบบจำลองนี้ใช้กรณีแหล่งกำเนิดเคลื่อนที่ ผู้ฟังอยู่นิ่ง และ vₛ &lt; v</li>
+              </ul>
+            </div>
+            <div class="templateLegendCard dopplerLegend">
+              <div class="legendRow"><span class="legendLine waveLine"></span><span>หน้าคลื่นเสียงที่แผ่ออกเป็นวงกลมจากตำแหน่งเก่าของแหล่งกำเนิด</span></div>
+              <div class="legendRow"><span class="legendLine frontLine"></span><span>ด้านเข้าใกล้: ความยาวคลื่นสั้นลง เสียงสูงขึ้น</span></div>
+              <div class="legendRow"><span class="legendLine backLine"></span><span>ด้านออกห่าง: ความยาวคลื่นยาวขึ้น เสียงต่ำลง</span></div>
+              <div class="legendRow"><span class="sourceDot"></span><span>แหล่งกำเนิดเสียงที่กำลังเคลื่อนที่</span></div>
+            </div>
+            <div class="templateInsightCard">
+              <div class="insightTitle">สูตรที่ใช้ในหน้าแอป</div>
+              <div class="dopplerFormulaGrid">
+                <div class="dopplerFormulaBox"><b>เข้าใกล้ผู้ฟัง</b><code>f′ = f · v / (v − vₛ)</code></div>
+                <div class="dopplerFormulaBox"><b>ออกห่างผู้ฟัง</b><code>f′ = f · v / (v + vₛ)</code></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <div class="card controlViz templateControlViz longitudinalControlViz neonControlViz">
+      <div class="panelTitleStack">
+        <h3>Parameters (ตัวแปรควบคุม)</h3>
+        <p class="panelSubtext">ปรับค่าแล้วสังเกตการบีบและยืดของหน้าคลื่น</p>
+      </div>
+
+      <div class="field richField neonParamRow directionRow">
+        <div class="paramIcon dopDirectionIcon">ทิศ</div>
+        <div class="paramText"><label>ทิศทางการเคลื่อนที่</label><small>เลือกว่ารถลำโพงเคลื่อนที่ไปทางใด</small></div>
+        <select id="dopDirection" class="visuallyHiddenSelect" aria-label="ทิศทางการเคลื่อนที่">
+          <option value="right" selected>ไปทางขวา</option>
+          <option value="left">ไปทางซ้าย</option>
+        </select>
+        <div class="modeSegmented" role="group" aria-label="ทิศทาง">
+          <button id="dopMoveRightBtn" type="button" class="modePill active" data-dir="right" aria-pressed="true">ไปทางขวา</button>
+          <button id="dopMoveLeftBtn" type="button" class="modePill" data-dir="left" aria-pressed="false">ไปทางซ้าย</button>
+        </div>
+        <div class="paramValueWrap"><span id="dopDirectionLabel" class="valueBadge">ไปทางขวา</span></div>
+      </div>
+
+      <div class="field richField neonParamRow freqRow">
+        <div class="paramIcon dopFreqIcon">f</div>
+        <div class="paramText"><label>ความถี่แหล่งกำเนิด</label><small>เสียงต้นฉบับของลำโพง</small></div>
+        <input id="dopFreq" type="range" min="80" max="800" step="5" value="220">
+        <div class="paramValueWrap"><span id="dopFreqLabel" class="valueBadge">220 Hz</span></div>
+      </div>
+
+      <div class="field richField neonParamRow sourceSpeedRow">
+        <div class="paramIcon dopVsIcon">vₛ</div>
+        <div class="paramText"><label>ความเร็วแหล่งกำเนิด</label><small>ระบบจำกัดไม่ให้เกิน 0.90v เพื่อให้สูตรเสถียร</small></div>
+        <input id="dopSourceSpeed" type="range" min="0" max="309" step="1" value="80">
+        <div class="paramValueWrap"><span id="dopVsLabel" class="valueBadge">80 m/s</span></div>
+      </div>
+
+      <div class="field richField neonParamRow soundSpeedRow">
+        <div class="paramIcon dopVIcon">v</div>
+        <div class="paramText"><label>อัตราเร็วเสียง</label><small>อากาศปกติประมาณ 343 m/s</small></div>
+        <input id="dopSpeed" type="range" min="250" max="380" step="1" value="343">
+        <div class="paramValueWrap"><span id="dopVLabel" class="valueBadge">343 m/s</span></div>
+      </div>
+
+      <div class="field richField neonParamRow listenRow">
+        <div class="paramIcon dopListenIcon">ฟัง</div>
+        <div class="paramText"><label>เลือกตำแหน่งที่ได้ยินเสียง</label><small>ใช้เปรียบเทียบเสียงต้นฉบับ ซ้าย และขวา</small></div>
+        <select id="dopListen" class="visuallyHiddenSelect" aria-label="เลือกเสียงที่ได้ยิน">
+          <option value="source">ต้นฉบับ</option>
+          <option value="left">ผู้ฟังซ้าย</option>
+          <option value="right" selected>ผู้ฟังขวา</option>
+        </select>
+        <div class="modeSegmented" role="group" aria-label="เลือกเสียง">
+          <button type="button" class="modePill" data-listen="source" aria-pressed="false">ต้นฉบับ</button>
+          <button type="button" class="modePill" data-listen="left" aria-pressed="false">ฟังซ้าย</button>
+          <button type="button" class="modePill active" data-listen="right" aria-pressed="true">ฟังขวา</button>
+        </div>
+        <div class="paramValueWrap"><span id="dopListenLabel" class="valueBadge">ผู้ฟังขวา</span></div>
+      </div>
+
+      <div class="field richField neonParamRow timeRow">
+        <div class="paramIcon dopTimeIcon">t</div>
+        <div class="paramText"><label>ความเร็วภาพจำลอง</label><small>ปรับให้ดูหน้าคลื่นชัดขึ้น</small></div>
+        <input id="dopTimeSpeed" type="range" min="0.2" max="2.0" step="0.1" value="1.0">
+        <div class="paramValueWrap"><span id="dopTimeLabel" class="valueBadge">1.0×</span></div>
+      </div>
+
+      <div class="field richField neonParamRow audioRow">
+        <div class="paramIcon dopAudioIcon">🔊</div>
+        <div class="paramText"><label>เสียงจำลอง</label><small>เล่นความถี่ที่เลือกฟัง</small></div>
+        <div class="dopplerAudioRow">
+          <button id="dopSoundBtn" type="button" class="secondary">เปิดเสียง</button>
+          <span id="dopAudioStatus" class="dopAudioStatus">ยังไม่เปิดเสียง</span>
+        </div>
+      </div>
+
+      <div class="localExportCard templateExportCard" data-export-name="dopplerEffect">
+        <div class="panelTitleStack">
+          <h3>บันทึกผล</h3>
+          <p class="panelSubtext">เก็บค่าความถี่ที่ผู้ฟังแต่ละด้านได้ยิน</p>
+        </div>
+        <div class="dopplerExportActions">
+          <button id="dopCaptureBtn" class="secondary localCaptureBtn" type="button">บันทึกค่า</button>
+          <button id="dopDownloadBtn" class="secondary localDownloadBtn" type="button">ดาวน์โหลด CSV</button>
+          <button id="dopClearBtn" class="secondary localClearBtn" type="button">ล้างข้อมูล</button>
+        </div>
+        <div class="tableWrap localLogWrap"><table><thead><tr id="dopHead"></tr></thead><tbody id="dopBody"></tbody></table></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
 <script>
-(()=>{'use strict';const $=id=>document.getElementById(id);const state={running:true,last:performance.now(),time:.20,logs:[]};const audio={ctx:null,osc:null,gain:null,playing:false};const sprites={car:null,left:null,right:null};if(typeof Image!=='undefined'){[['car','doppler_car_sprite.png'],['left','doppler_listener_left_sprite.png'],['right','doppler_listener_right_sprite.png']].forEach(([k,src])=>{const img=new Image();img.onload=()=>draw();img.src=src;sprites[k]=img;});}function spriteReady(img){return !!(img&&img.complete&&img.naturalWidth>0);}function clamp(v,a,b){return Math.max(a,Math.min(b,v));}function fmt(v,d=2){const s=Number(v).toFixed(d);return d===0?s:s.replace(/\.?0+$/,'');}function params(){let f0=Number($('dopFreq')?.value||120),v=Number($('dopSpeed')?.value||328),vsEl=$('dopSourceSpeed'),vs=Number(vsEl?.value||167),maxVs=Math.max(0,Math.floor(v*.90));if(vsEl){vsEl.max=String(maxVs);if(vs>maxVs){vs=maxVs;vsEl.value=String(maxVs);}}let ratio=v>0?vs/v:0,dir=$('dopDirection')?.value||'right',listen=$('dopListen')?.value||'right',timeSpeed=Number($('dopTimeSpeed')?.value||1.4),approach=f0*v/(v-vs),recede=f0*v/(v+vs),leftFreq=dir==='left'?approach:recede,rightFreq=dir==='right'?approach:recede,leftRole=dir==='left'?'ความถี่สูง (เสียงแหลม)':'ความถี่ต่ำ (เสียงทุ้ม)',rightRole=dir==='right'?'ความถี่สูง (เสียงแหลม)':'ความถี่ต่ำ (เสียงทุ้ม)',high=Math.max(leftFreq,rightFreq),low=Math.min(leftFreq,rightFreq);return{f0,v,vs,ratio,dir,listen,timeSpeed,approach,recede,leftFreq,rightFreq,leftRole,rightRole,compare:high/low,dirSign:dir==='right'?1:-1};}function scale(canvas){let dpr=Math.max(1,window.devicePixelRatio||1),r=canvas.getBoundingClientRect(),w=Math.max(360,Math.round(r.width||900)),h=Math.max(430,Math.round(r.height||560));if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}let ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);return{ctx,w,h};}function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect?ctx.roundRect(x,y,w,h,r):ctx.rect(x,y,w,h);}function fillRound(ctx,x,y,w,h,r,fill,stroke){roundRect(ctx,x,y,w,h,r);if(fill)ctx.fill();if(stroke)ctx.stroke();}function bg(ctx,w,h){let g=ctx.createLinearGradient(0,0,w,h);g.addColorStop(0,'#061426');g.addColorStop(.55,'#0b1837');g.addColorStop(1,'#24135a');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);ctx.strokeStyle='rgba(56,189,248,.09)';ctx.lineWidth=1;for(let x=0;x<w;x+=42){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}for(let y=0;y<h;y+=42){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}for(let i=0;i<36;i++){let x=(i*137+state.time*18)%w,y=(i*61)%h;ctx.fillStyle='rgba(125,211,252,.22)';ctx.fillRect(x,y,1.5,1.5);}}function arrow(ctx,x1,y1,x2,y2,color){let a=Math.atan2(y2-y1,x2-x1);ctx.save();ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-12*Math.cos(a-.45),y2-12*Math.sin(a-.45));ctx.lineTo(x2-12*Math.cos(a+.45),y2-12*Math.sin(a+.45));ctx.closePath();ctx.fill();ctx.restore();}function labelBox(ctx,x,y,w,h,title,value,sub,color){ctx.save();ctx.fillStyle='rgba(7,13,28,.72)';ctx.strokeStyle=color;ctx.lineWidth=1.8;fillRound(ctx,x-w/2,y-h/2,w,h,14,true,true);ctx.fillStyle=color;ctx.font='950 21px system-ui,sans-serif';ctx.textAlign='center';ctx.fillText(value,x,y+5);ctx.fillStyle='#e2e8f0';ctx.font='900 12px system-ui,sans-serif';ctx.fillText(title,x,y-22);ctx.fillStyle='rgba(226,232,240,.85)';ctx.font='800 10px system-ui,sans-serif';ctx.fillText(sub,x,y+25);ctx.restore();}function drawPerson(ctx,x,y,side,color,role,freq,scaleFactor=1){ctx.save();const s=scaleFactor;const key=side==='left'?'left':'right',label=key==='left'?'ผู้ฟังด้านซ้าย':'ผู้ฟังด้านขวา',img=sprites[key];const glow=ctx.createRadialGradient(x,y+75*s,4,x,y+75*s,95*s);glow.addColorStop(0,color.replace('1)', '.30)'));glow.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=glow;ctx.beginPath();ctx.ellipse(x,y+78*s,78*s,20*s,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#e2e8f0';ctx.font=`950 ${Math.max(11,Math.round(14*s))}px system-ui,sans-serif`;ctx.textAlign='center';ctx.fillText(label,x,y-96*s);ctx.fillStyle=color.replace('1)', '.82)');ctx.strokeStyle=color;ctx.lineWidth=Math.max(1.1,1.4*s);fillRound(ctx,x-92*s,y-85*s,184*s,28*s,14*s,true,true);ctx.fillStyle='#f8fafc';ctx.font=`900 ${Math.max(10,Math.round(12*s))}px system-ui,sans-serif`;ctx.fillText(role,x,y-66*s);if(spriteReady(img)){const h=(key==='left'?230:245)*s,w=h*(img.naturalWidth/img.naturalHeight);ctx.drawImage(img,x-w/2,y-48*s,w,h);}else{ctx.fillStyle='rgba(15,23,42,.72)';ctx.strokeStyle=color;ctx.lineWidth=Math.max(1.2,1.7*s);fillRound(ctx,x-54*s,y-48*s,108*s,128*s,18*s,true,true);ctx.fillStyle='#e8c39e';ctx.beginPath();ctx.arc(x,y-8*s,17*s,0,Math.PI*2);ctx.fill();ctx.fillStyle=color;fillRound(ctx,x-24*s,y+12*s,48*s,38*s,16*s,true,false);}labelBox(ctx,x,y+138*s,160*s,74*s,'',`${fmt(freq,1)} Hz`,'ความถี่ที่ได้ยิน',color);ctx.restore();}function drawCar(ctx,x,y,p,scaleFactor=1){ctx.save();const s=scaleFactor,img=sprites.car;if(spriteReady(img)){const w=265*s,h=w*(img.naturalHeight/img.naturalWidth);ctx.translate(x,y);ctx.scale(p.dirSign,1);ctx.drawImage(img,-w/2,-h/2-10*s,w,h);ctx.restore();}else{ctx.translate(x,y);ctx.scale(p.dirSign,1);let grd=ctx.createLinearGradient(-74*s,-34*s,72*s,26*s);grd.addColorStop(0,'#d9e3ec');grd.addColorStop(.55,'#7f8fa3');grd.addColorStop(1,'#f8fafc');ctx.fillStyle='rgba(34,211,238,.20)';ctx.beginPath();ctx.ellipse(0,46*s,90*s,17*s,0,0,Math.PI*2);ctx.fill();ctx.fillStyle=grd;ctx.strokeStyle='rgba(226,232,240,.80)';ctx.lineWidth=2*s;roundRect(ctx,-82*s,-24*s,145*s,50*s,13*s);ctx.fill();ctx.stroke();ctx.fillStyle='#1e293b';roundRect(ctx,-45*s,-43*s,62*s,28*s,10*s);ctx.fill();ctx.fillStyle='rgba(56,189,248,.45)';roundRect(ctx,-38*s,-38*s,26*s,18*s,5*s);ctx.fill();roundRect(ctx,-5*s,-38*s,18*s,18*s,5*s);ctx.fill();ctx.fillStyle='#0f172a';ctx.beginPath();ctx.arc(-48*s,29*s,12*s,0,Math.PI*2);ctx.arc(36*s,29*s,12*s,0,Math.PI*2);ctx.fill();ctx.fillStyle='#e5e7eb';ctx.beginPath();ctx.moveTo(-5*s,-48*s);ctx.lineTo(33*s,-66*s);ctx.lineTo(44*s,-30*s);ctx.closePath();ctx.fill();ctx.restore();}ctx.save();ctx.fillStyle='#67e8f9';ctx.font=`950 ${Math.max(11,Math.round(14*s))}px system-ui,sans-serif`;ctx.textAlign='center';ctx.fillText(`${fmt(p.f0,0)} Hz`,x,y+60*s);ctx.restore();}function draw(){let canvas=$('dopCanvas');if(!canvas)return;let {ctx,w,h}=scale(canvas),p=params();bg(ctx,w,h);const compact=w<760,objectScale=compact?Math.max(.62,w/760):1;let left=compact?44:66,right=w-(compact?44:66),axisY=Math.round(h*(compact?.48:.52)),span=right-left,leftX=left+(compact?68:95),rightX=right-(compact?68:95),moveStart=left+span*.34,moveEnd=right-span*.34,moveSpan=moveEnd-moveStart,movePhase=(state.time*(.10+.36*p.ratio))%1,sourceX=p.ratio<.004?(moveStart+moveEnd)/2:(p.dirSign===1?moveStart+movePhase*moveSpan:moveEnd-movePhase*moveSpan);ctx.save();ctx.strokeStyle='rgba(226,232,240,.45)';ctx.setLineDash([7,9]);ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(leftX+65,axisY);ctx.lineTo(rightX-65,axisY);ctx.stroke();ctx.setLineDash([]);let waveSpeedPx=190,sourceSpeedPx=waveSpeedPx*p.ratio,frontStart=p.dirSign===1?-.50*Math.PI:.50*Math.PI,frontEnd=p.dirSign===1?.50*Math.PI:1.50*Math.PI,backStart=p.dirSign===1?.50*Math.PI:-.50*Math.PI,backEnd=p.dirSign===1?1.50*Math.PI:.50*Math.PI;for(let i=0;i<20;i++){let age=((state.time*.92)%0.22)+i*.22,rad=age*waveSpeedPx,originX=sourceX-p.dirSign*sourceSpeedPx*age,alpha=clamp(.68-i*.031,.07,.68);ctx.lineWidth=2.2;ctx.strokeStyle=`rgba(124,252,66,${alpha})`;ctx.beginPath();ctx.arc(originX,axisY,rad,frontStart,frontEnd);ctx.stroke();ctx.strokeStyle=`rgba(167,139,250,${alpha})`;ctx.beginPath();ctx.arc(originX,axisY,rad,backStart,backEnd);ctx.stroke();}drawPerson(ctx,leftX,axisY,'left',p.dir==='left'?'rgba(124,252,66,1)':'rgba(167,139,250,1)',p.leftRole,p.leftFreq,objectScale);drawPerson(ctx,rightX,axisY,'right',p.dir==='right'?'rgba(124,252,66,1)':'rgba(167,139,250,1)',p.rightRole,p.rightFreq,objectScale);drawCar(ctx,sourceX,axisY,p,objectScale);const arrowY=axisY+(compact?46:58);arrow(ctx,sourceX,arrowY,sourceX+p.dirSign*((compact?58:76)+50*p.ratio),arrowY,'#22d3ee');ctx.fillStyle='#e0f2fe';ctx.font=`950 ${compact?11:13}px system-ui,sans-serif`;ctx.textAlign='center';ctx.fillText(`vₛ = ${fmt(p.vs,1)} m/s`,sourceX+p.dirSign*((compact?40:54)+42*p.ratio),axisY+(compact?62:80));labelBox(ctx,sourceX,axisY+(compact?116:145),compact?132:150,compact?64:72,'แหล่งกำเนิดเสียง',`${fmt(p.f0,0)} Hz`,'ความถี่ต้นฉบับ','#22d3ee');ctx.restore();updateLabels(p);}function selectedFreq(p=params()){return p.listen==='left'?p.leftFreq:p.listen==='right'?p.rightFreq:p.f0;}function updateLabels(p=params()){$('speedBadge').textContent=`v = ${fmt(p.v,0)} m/s`;$('ratioBadge').textContent=`vₛ/v = ${fmt(p.ratio,2)}`;$('dirLabel').textContent=p.dir==='right'?'ขวา':'ซ้าย';$('freqLabel').textContent=`${fmt(p.f0,0)} Hz`;$('sourceSpeedLabel').textContent=`${fmt(p.vs,0)} m/s`;$('speedLabel').textContent=`${fmt(p.v,0)} m/s`;$('timeLabel').textContent=`${fmt(p.timeSpeed,1)}×`;$('statF0').textContent=`${fmt(p.f0,0)} Hz`;$('statVs').textContent=`${fmt(p.vs,1)} m/s`;$('statV').textContent=`${fmt(p.v,0)} m/s`;let heard=selectedFreq(p),heardName=p.listen==='left'?'ผู้ฟังด้านซ้าย':p.listen==='right'?'ผู้ฟังด้านขวา':'เสียงต้นฉบับ';$('heardFreqLabel').textContent=`${fmt(heard,1)} Hz`;$('heardHintLabel').textContent=`กำลังฟัง: ${heardName}`;document.querySelectorAll('.dopQuickListen button').forEach(btn=>btn.classList.toggle('active',btn.dataset.listen===p.listen));document.body.classList.toggle('dopRunning',state.running);document.body.classList.toggle('dopPaused',!state.running);updateAudio(false);}function row(){let p=params();return{timestamp:new Date().toISOString(),topic:'Doppler Effect',source_frequency_Hz:Number(fmt(p.f0,1)),source_speed_mps:Number(fmt(p.vs,2)),sound_speed_mps:Number(fmt(p.v,0)),source_speed_ratio:Number(fmt(p.ratio,3)),direction:p.dir,left_listener_Hz:Number(fmt(p.leftFreq,2)),right_listener_Hz:Number(fmt(p.rightFreq,2)),approaching_frequency_Hz:Number(fmt(p.approach,2)),receding_frequency_Hz:Number(fmt(p.recede,2)),listen:p.listen,listen_frequency_Hz:Number(fmt(selectedFreq(p),2))};}function renderLog(){let keys=['timestamp','source_frequency_Hz','source_speed_mps','sound_speed_mps','source_speed_ratio','direction','left_listener_Hz','right_listener_Hz','approaching_frequency_Hz','receding_frequency_Hz','listen','listen_frequency_Hz'];$('dopHead').innerHTML=keys.map(k=>`<th>${k}</th>`).join('');$('dopBody').innerHTML=state.logs.map(r=>`<tr>${keys.map(k=>`<td>${r[k]??''}</td>`).join('')}</tr>`).join('');}function downloadCSV(){if(!state.logs.length)state.logs.push(row());let keys=Object.keys(state.logs[0]);let csv=[keys.join(','),...state.logs.map(r=>keys.map(k=>JSON.stringify(r[k]??'')).join(','))].join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='melodylab_doppler_effect.csv';a.click();URL.revokeObjectURL(a.href);renderLog();}function savePNG(){let a=document.createElement('a');a.href=$('dopCanvas').toDataURL('image/png');a.download='melodylab_doppler_effect.png';a.click();}async function ensureAudio(){if(!(window.AudioContext||window.webkitAudioContext)){$('dopSoundLabel').textContent='อุปกรณ์นี้ไม่รองรับ Web Audio';return false;}if(!audio.ctx){let AC=window.AudioContext||window.webkitAudioContext;audio.ctx=new AC();audio.osc=audio.ctx.createOscillator();audio.gain=audio.ctx.createGain();audio.osc.type='sine';audio.gain.gain.value=0;audio.osc.connect(audio.gain).connect(audio.ctx.destination);audio.osc.start();}if(audio.ctx.state==='suspended')await audio.ctx.resume();return true;}function updateAudio(){let p=params(),freq=selectedFreq(p);$('dopSoundBtn').textContent=audio.playing?'🔇 ปิดเสียง':'🔊 เปิดเสียง';$('dopSoundLabel').textContent=audio.playing?`กำลังเล่น ${fmt(freq,1)} Hz (${p.listen==='left'?'ซ้าย':p.listen==='right'?'ขวา':'ต้นฉบับ'})`:'ยังไม่เปิดเสียง';if(!audio.playing||!audio.ctx)return;let t=audio.ctx.currentTime||0;audio.osc.frequency.setTargetAtTime(freq,t,.025);audio.gain.gain.setTargetAtTime(.035,t,.035);}async function toggleSound(){if(audio.playing){audio.playing=false;if(audio.gain&&audio.ctx)audio.gain.gain.setTargetAtTime(0,audio.ctx.currentTime||0,.03);updateAudio();return;}if(await ensureAudio()){audio.playing=true;updateAudio();}}function resetAll(){state.time=.20;state.running=true;$('dopFreq').value=120;$('dopSourceSpeed').value=167;$('dopSpeed').value=328;$('dopDirection').value='right';$('dopListen').value='right';$('dopTimeSpeed').value=1.4;draw();}function tick(now){let dt=Math.min(.05,(now-state.last)/1000);state.last=now;if(state.running)state.time+=dt*params().timeSpeed;draw();requestAnimationFrame(tick);}['dopDirection','dopFreq','dopSourceSpeed','dopSpeed','dopListen','dopTimeSpeed'].forEach(id=>{$(id)?.addEventListener('input',draw);$(id)?.addEventListener('change',draw);});$('dopPlayBtn').addEventListener('click',()=>{state.running=true;draw();});$('dopPauseBtn').addEventListener('click',()=>{state.running=false;draw();});$('dopResetBtn').addEventListener('click',resetAll);$('dopSoundBtn').addEventListener('click',toggleSound);document.querySelectorAll('.dopQuickListen button').forEach(btn=>btn.addEventListener('click',()=>{if($('dopListen'))$('dopListen').value=btn.dataset.listen;draw();}));$('dopCaptureBtn').addEventListener('click',()=>{state.logs.push(row());renderLog();});$('dopDownloadBtn').addEventListener('click',downloadCSV);$('dopPngBtn').addEventListener('click',savePNG);$('dopClearBtn').addEventListener('click',()=>{state.logs=[];renderLog();});window.addEventListener('resize',draw,{passive:true});window.addEventListener('pagehide',()=>{audio.playing=false;if(audio.gain&&audio.ctx)audio.gain.gain.setTargetAtTime(0,audio.ctx.currentTime||0,.03);});draw();requestAnimationFrame(tick);})();
-</script></body></html>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const canvas = $('visualizerCanvas');
+  const state = { running:true, last:performance.now(), time:0.18, logs:[] };
+  const audio = { ctx:null, osc:null, gain:null, playing:false };
+
+  function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+  function fmt(v,d=1){
+    const s = Number(v).toFixed(d);
+    return d === 0 ? s : s.replace(/\.?0+$/,'');
+  }
+  function params(){
+    let f0 = Number($('dopFreq').value || 220);
+    let v = Number($('dopSpeed').value || 343);
+    let vsEl = $('dopSourceSpeed');
+    let vs = Number(vsEl.value || 80);
+    const maxVs = Math.max(0, Math.floor(v * 0.90));
+    vsEl.max = String(maxVs);
+    if(vs > maxVs){ vs = maxVs; vsEl.value = String(maxVs); }
+    const dir = $('dopDirection').value || 'right';
+    const listen = $('dopListen').value || 'right';
+    const timeSpeed = Number($('dopTimeSpeed').value || 1.0);
+    const approach = f0 * v / (v - vs);
+    const recede = f0 * v / (v + vs);
+    const leftFreq = dir === 'left' ? approach : recede;
+    const rightFreq = dir === 'right' ? approach : recede;
+    const ratio = v > 0 ? vs / v : 0;
+    const dirSign = dir === 'right' ? 1 : -1;
+    return { f0, v, vs, maxVs, ratio, dir, listen, timeSpeed, approach, recede, leftFreq, rightFreq, dirSign };
+  }
+  function selectedFreq(p=params()){
+    return p.listen === 'left' ? p.leftFreq : p.listen === 'right' ? p.rightFreq : p.f0;
+  }
+  function selectedName(p=params()){
+    return p.listen === 'left' ? 'ผู้ฟังซ้าย' : p.listen === 'right' ? 'ผู้ฟังขวา' : 'ต้นฉบับ';
+  }
+  function resizeCanvas(){
+    const dpr = Math.max(1, window.devicePixelRatio || 1);
+    const r = canvas.getBoundingClientRect();
+    const w = Math.max(320, Math.round(r.width || 900));
+    const h = Math.max(240, Math.round(r.height || 420));
+    if(canvas.width !== Math.round(w*dpr) || canvas.height !== Math.round(h*dpr)){
+      canvas.width = Math.round(w*dpr);
+      canvas.height = Math.round(h*dpr);
+    }
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    return {ctx,w,h};
+  }
+  function roundRect(ctx,x,y,w,h,r){
+    ctx.beginPath();
+    if(ctx.roundRect) ctx.roundRect(x,y,w,h,r);
+    else ctx.rect(x,y,w,h);
+  }
+  function fillRound(ctx,x,y,w,h,r,fill,stroke){
+    roundRect(ctx,x,y,w,h,r);
+    if(fill) ctx.fill();
+    if(stroke) ctx.stroke();
+  }
+  function background(ctx,w,h){
+    const g = ctx.createLinearGradient(0,0,w,h);
+    g.addColorStop(0,'#061426');
+    g.addColorStop(.58,'#0b1837');
+    g.addColorStop(1,'#1e1452');
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,w,h);
+    ctx.strokeStyle = 'rgba(125,211,252,.065)';
+    ctx.lineWidth = 1;
+    for(let x=0;x<w;x+=42){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke(); }
+    for(let y=0;y<h;y+=42){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke(); }
+  }
+  function arrow(ctx,x1,y1,x2,y2,color){
+    const a = Math.atan2(y2-y1,x2-x1);
+    ctx.save();
+    ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 3; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x2,y2);
+    ctx.lineTo(x2-12*Math.cos(a-.45), y2-12*Math.sin(a-.45));
+    ctx.lineTo(x2-12*Math.cos(a+.45), y2-12*Math.sin(a+.45));
+    ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+  function labelPill(ctx,x,y,text,color){
+    ctx.save();
+    ctx.font = '900 12px system-ui, sans-serif';
+    const m = ctx.measureText(text).width;
+    const bw = m + 24, bh = 28;
+    ctx.fillStyle = 'rgba(15,23,42,.72)';
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.4;
+    fillRound(ctx,x-bw/2,y-bh/2,bw,bh,14,true,true);
+    ctx.fillStyle = '#e5eef8';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(text,x,y+1);
+    ctx.restore();
+  }
+  function drawListener(ctx,x,y,side,freq,roleColor,active,scale){
+    const s = scale;
+    ctx.save();
+    ctx.translate(x,y);
+    ctx.fillStyle = active ? 'rgba(34,211,238,.18)' : 'rgba(15,23,42,.42)';
+    ctx.strokeStyle = active ? 'rgba(34,211,238,.75)' : roleColor;
+    ctx.lineWidth = active ? 2 : 1.4;
+    fillRound(ctx,-50*s,-78*s,100*s,144*s,18*s,true,true);
+
+    ctx.fillStyle = '#e8c39e';
+    ctx.beginPath(); ctx.arc(0,-30*s,14*s,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle = side === 'left' ? '#334155' : '#7c4a2d';
+    ctx.beginPath(); ctx.arc(0,-35*s,15*s,Math.PI,Math.PI*2); ctx.fill();
+    ctx.fillStyle = roleColor;
+    fillRound(ctx,-18*s,-10*s,36*s,42*s,14*s,true,false);
+    ctx.strokeStyle = 'rgba(226,232,240,.65)';
+    ctx.lineWidth = 2*s;
+    ctx.beginPath(); ctx.moveTo(-12*s,8*s); ctx.lineTo(-28*s,24*s); ctx.moveTo(12*s,8*s); ctx.lineTo(28*s,24*s); ctx.stroke();
+
+    ctx.fillStyle = '#f8fafc';
+    ctx.font = `900 ${Math.max(10,12*s)}px system-ui,sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText(side === 'left' ? 'ผู้ฟังซ้าย' : 'ผู้ฟังขวา',0,-92*s);
+    ctx.fillStyle = roleColor;
+    ctx.font = `950 ${Math.max(14,17*s)}px system-ui,sans-serif`;
+    ctx.fillText(`${fmt(freq,1)} Hz`,0,86*s);
+    ctx.restore();
+  }
+  function drawCar(ctx,x,y,dirSign,scale){
+    const s = scale;
+    ctx.save();
+    ctx.translate(x,y);
+    ctx.scale(dirSign,1);
+    ctx.fillStyle = 'rgba(34,211,238,.18)';
+    ctx.beginPath(); ctx.ellipse(0,36*s,70*s,13*s,0,0,Math.PI*2); ctx.fill();
+
+    const body = ctx.createLinearGradient(-66*s,-24*s,70*s,24*s);
+    body.addColorStop(0,'#dbeafe');
+    body.addColorStop(.52,'#60a5fa');
+    body.addColorStop(1,'#e0f2fe');
+    ctx.fillStyle = body;
+    ctx.strokeStyle = 'rgba(226,232,240,.82)';
+    ctx.lineWidth = 2*s;
+    fillRound(ctx,-68*s,-24*s,136*s,48*s,12*s,true,true);
+
+    ctx.fillStyle = '#1e293b';
+    fillRound(ctx,-34*s,-48*s,58*s,28*s,9*s,true,false);
+    ctx.fillStyle = 'rgba(125,211,252,.62)';
+    fillRound(ctx,-28*s,-42*s,22*s,16*s,4*s,true,false);
+    fillRound(ctx,0,-42*s,18*s,16*s,4*s,true,false);
+
+    ctx.fillStyle = '#0f172a';
+    ctx.beginPath(); ctx.arc(-42*s,25*s,12*s,0,Math.PI*2); ctx.arc(42*s,25*s,12*s,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#e5e7eb';
+    ctx.beginPath(); ctx.arc(-42*s,25*s,5*s,0,Math.PI*2); ctx.arc(42*s,25*s,5*s,0,Math.PI*2); ctx.fill();
+
+    ctx.fillStyle = '#f59e0b';
+    ctx.beginPath();
+    ctx.moveTo(4*s,-50*s); ctx.lineTo(40*s,-66*s); ctx.lineTo(40*s,-34*s); ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(251,191,36,.75)';
+    ctx.stroke();
+
+    ctx.fillStyle = '#f8fafc';
+    ctx.font = `900 ${Math.max(11,13*s)}px system-ui,sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText('ลำโพง',22*s,-72*s);
+    ctx.restore();
+  }
+  function drawWaves(ctx,sourceX,axisY,p,w,h,scale){
+    const waveSpeedPx = 174 * scale;
+    const sourceSpeedPx = waveSpeedPx * p.ratio;
+    const phase = (state.time * 0.86) % 0.20;
+    const dirSign = p.dirSign;
+    const frontIsRight = dirSign === 1;
+
+    ctx.save();
+    ctx.lineWidth = Math.max(1.4, 2.2*scale);
+    for(let i=0;i<22;i++){
+      const age = phase + i*0.20;
+      const r = age * waveSpeedPx;
+      if(r < 8 || r > Math.max(w,h)*0.78) continue;
+      const ox = sourceX - dirSign * sourceSpeedPx * age;
+      const alpha = clamp(.64 - i*.026, .07, .64);
+
+      ctx.strokeStyle = `rgba(56,189,248,${alpha})`;
+      ctx.beginPath();
+      ctx.arc(ox,axisY,r,0,Math.PI*2);
+      ctx.stroke();
+
+      // highlight approaching half and receding half without hiding the true circular wavefronts
+      ctx.lineWidth = Math.max(2.2, 3.4*scale);
+      ctx.strokeStyle = `rgba(34,197,94,${alpha*.55})`;
+      ctx.beginPath();
+      ctx.arc(ox,axisY,r,frontIsRight ? -Math.PI/2 : Math.PI/2, frontIsRight ? Math.PI/2 : 1.5*Math.PI);
+      ctx.stroke();
+
+      ctx.strokeStyle = `rgba(167,139,250,${alpha*.42})`;
+      ctx.beginPath();
+      ctx.arc(ox,axisY,r,frontIsRight ? Math.PI/2 : -Math.PI/2, frontIsRight ? 1.5*Math.PI : Math.PI/2);
+      ctx.stroke();
+      ctx.lineWidth = Math.max(1.4, 2.2*scale);
+    }
+    ctx.restore();
+  }
+  function draw(){
+    const {ctx,w,h} = resizeCanvas();
+    const p = params();
+    background(ctx,w,h);
+
+    const compact = w < 700;
+    const s = compact ? clamp(w/760,.54,.72) : clamp(w/1200,.78,.92);
+    const axisY = Math.round(h * (compact ? .49 : .53));
+    const leftX = compact ? 62 : 110;
+    const rightX = w - (compact ? 62 : 110);
+    const moveStart = leftX + (compact ? 86 : 150);
+    const moveEnd = rightX - (compact ? 86 : 150);
+    const moveSpan = Math.max(60, moveEnd - moveStart);
+    const movePhase = (state.time * (0.12 + 0.34*p.ratio)) % 1;
+    const sourceX = p.ratio < 0.004 ? (moveStart+moveEnd)/2 : (p.dirSign === 1 ? moveStart + movePhase*moveSpan : moveEnd - movePhase*moveSpan);
+
+    ctx.save();
+    ctx.strokeStyle = 'rgba(226,232,240,.36)';
+    ctx.setLineDash([8,9]);
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(leftX+50*s, axisY);
+    ctx.lineTo(rightX-50*s, axisY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(148,163,184,.32)';
+    ctx.fillRect(leftX+50*s, axisY+46*s, rightX-leftX-100*s, 2);
+    ctx.restore();
+
+    drawWaves(ctx,sourceX,axisY,p,w,h,s);
+
+    const leftActive = p.listen === 'left';
+    const rightActive = p.listen === 'right';
+    const leftColor = p.dir === 'left' ? '#22c55e' : '#a78bfa';
+    const rightColor = p.dir === 'right' ? '#22c55e' : '#a78bfa';
+    drawListener(ctx,leftX,axisY,'left',p.leftFreq,leftColor,leftActive,s);
+    drawListener(ctx,rightX,axisY,'right',p.rightFreq,rightColor,rightActive,s);
+    drawCar(ctx,sourceX,axisY,p.dirSign,s);
+
+    const arrowY = axisY + 55*s;
+    arrow(ctx, sourceX, arrowY, sourceX + p.dirSign*(70+46*p.ratio)*s, arrowY, '#22d3ee');
+    labelPill(ctx, sourceX + p.dirSign*(80+40*p.ratio)*s, arrowY + 22*s, `vₛ = ${fmt(p.vs,0)} m/s`, '#22d3ee');
+
+    labelPill(ctx, sourceX, axisY + 105*s, `f = ${fmt(p.f0,0)} Hz`, '#f59e0b');
+    updateLabels(p);
+  }
+  function updateLabels(p=params()){
+    $('dopF0Out').textContent = `${fmt(p.f0,0)} Hz`;
+    $('dopVOut').textContent = `${fmt(p.v,0)} m/s`;
+    $('dopVsOut').textContent = `${fmt(p.vs,0)} m/s (${fmt(p.ratio,2)}v)`;
+    $('dopLeftOut').textContent = `${fmt(p.leftFreq,1)} Hz`;
+    $('dopRightOut').textContent = `${fmt(p.rightFreq,1)} Hz`;
+    $('dopHeardOut').textContent = `${fmt(selectedFreq(p),1)} Hz`;
+    $('dopFreqLabel').textContent = `${fmt(p.f0,0)} Hz`;
+    $('dopVsLabel').textContent = `${fmt(p.vs,0)} m/s`;
+    $('dopVLabel').textContent = `${fmt(p.v,0)} m/s`;
+    $('dopTimeLabel').textContent = `${fmt(p.timeSpeed,1)}×`;
+    $('dopDirectionLabel').textContent = p.dir === 'right' ? 'ไปทางขวา' : 'ไปทางซ้าย';
+    $('dopListenLabel').textContent = selectedName(p);
+
+    $('dopLeftCard').classList.toggle('high', p.leftFreq >= p.rightFreq);
+    $('dopLeftCard').classList.toggle('low', p.leftFreq < p.rightFreq);
+    $('dopRightCard').classList.toggle('high', p.rightFreq >= p.leftFreq);
+    $('dopRightCard').classList.toggle('low', p.rightFreq < p.leftFreq);
+
+    document.querySelectorAll('[data-dir]').forEach(btn=>{
+      const active = btn.dataset.dir === p.dir;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    document.querySelectorAll('[data-listen]').forEach(btn=>{
+      const active = btn.dataset.listen === p.listen;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    document.body.classList.toggle('vizRunning', state.running);
+    document.body.classList.toggle('vizPaused', !state.running);
+    updateAudio();
+  }
+  async function ensureAudio(){
+    if(!(window.AudioContext || window.webkitAudioContext)){
+      $('dopAudioStatus').textContent = 'อุปกรณ์นี้ไม่รองรับ Web Audio';
+      return false;
+    }
+    if(!audio.ctx){
+      const AC = window.AudioContext || window.webkitAudioContext;
+      audio.ctx = new AC();
+      audio.osc = audio.ctx.createOscillator();
+      audio.gain = audio.ctx.createGain();
+      audio.osc.type = 'sine';
+      audio.gain.gain.value = 0;
+      audio.osc.connect(audio.gain).connect(audio.ctx.destination);
+      audio.osc.start();
+    }
+    if(audio.ctx.state === 'suspended') await audio.ctx.resume();
+    return true;
+  }
+  function updateAudio(){
+    const p = params();
+    const freq = selectedFreq(p);
+    $('dopSoundBtn').textContent = audio.playing ? 'ปิดเสียง' : 'เปิดเสียง';
+    $('dopAudioStatus').textContent = audio.playing ? `กำลังเล่น ${fmt(freq,1)} Hz (${selectedName(p)})` : 'ยังไม่เปิดเสียง';
+    if(!audio.playing || !audio.ctx) return;
+    const t = audio.ctx.currentTime || 0;
+    audio.osc.frequency.setTargetAtTime(freq,t,.03);
+    audio.gain.gain.setTargetAtTime(.035,t,.04);
+  }
+  async function toggleSound(){
+    if(audio.playing){
+      audio.playing = false;
+      if(audio.gain && audio.ctx) audio.gain.gain.setTargetAtTime(0,audio.ctx.currentTime||0,.03);
+      updateAudio();
+      return;
+    }
+    if(await ensureAudio()){
+      audio.playing = true;
+      updateAudio();
+    }
+  }
+  function row(){
+    const p = params();
+    return {
+      timestamp:new Date().toISOString(),
+      source_frequency_Hz:Number(fmt(p.f0,1)),
+      sound_speed_mps:Number(fmt(p.v,1)),
+      source_speed_mps:Number(fmt(p.vs,1)),
+      source_speed_ratio:Number(fmt(p.ratio,3)),
+      direction:p.dir,
+      left_listener_Hz:Number(fmt(p.leftFreq,2)),
+      right_listener_Hz:Number(fmt(p.rightFreq,2)),
+      approaching_frequency_Hz:Number(fmt(p.approach,2)),
+      receding_frequency_Hz:Number(fmt(p.recede,2)),
+      listen:p.listen,
+      heard_frequency_Hz:Number(fmt(selectedFreq(p),2))
+    };
+  }
+  function renderLog(){
+    const keys=['timestamp','source_frequency_Hz','sound_speed_mps','source_speed_mps','source_speed_ratio','direction','left_listener_Hz','right_listener_Hz','approaching_frequency_Hz','receding_frequency_Hz','listen','heard_frequency_Hz'];
+    $('dopHead').innerHTML = keys.map(k=>`<th>${k}</th>`).join('');
+    $('dopBody').innerHTML = state.logs.map(r=>`<tr>${keys.map(k=>`<td>${r[k] ?? ''}</td>`).join('')}</tr>`).join('');
+  }
+  function downloadCSV(){
+    if(!state.logs.length) state.logs.push(row());
+    const keys = Object.keys(state.logs[0]);
+    const csv = [keys.join(','), ...state.logs.map(r=>keys.map(k=>JSON.stringify(r[k] ?? '')).join(','))].join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+    a.download = 'melodylab_doppler_effect.csv';
+    a.click();
+    URL.revokeObjectURL(a.href);
+    renderLog();
+  }
+  function savePNG(){
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = 'melodylab_doppler_effect.png';
+    a.click();
+  }
+  function resetAll(){
+    state.time = 0.18;
+    state.running = true;
+    $('dopDirection').value = 'right';
+    $('dopListen').value = 'right';
+    $('dopFreq').value = '220';
+    $('dopSourceSpeed').value = '80';
+    $('dopSpeed').value = '343';
+    $('dopTimeSpeed').value = '1.0';
+    draw();
+  }
+  function tick(now){
+    const dt = Math.min(.05,(now-state.last)/1000);
+    state.last = now;
+    if(state.running) state.time += dt * params().timeSpeed;
+    draw();
+    requestAnimationFrame(tick);
+  }
+
+  ['dopDirection','dopListen','dopFreq','dopSourceSpeed','dopSpeed','dopTimeSpeed'].forEach(id=>{
+    $(id).addEventListener('input', draw);
+    $(id).addEventListener('change', draw);
+  });
+  document.querySelectorAll('[data-dir]').forEach(btn=>btn.addEventListener('click',()=>{
+    $('dopDirection').value = btn.dataset.dir;
+    draw();
+  }));
+  document.querySelectorAll('[data-listen]').forEach(btn=>btn.addEventListener('click',()=>{
+    $('dopListen').value = btn.dataset.listen;
+    draw();
+  }));
+  $('vizPlayBtn').addEventListener('click',()=>{ state.running = true; draw(); });
+  $('vizPauseBtn').addEventListener('click',()=>{ state.running = false; draw(); });
+  $('vizResetBtn').addEventListener('click',resetAll);
+  $('vizScreenBtn').addEventListener('click',savePNG);
+  $('dopSoundBtn').addEventListener('click',toggleSound);
+  $('dopCaptureBtn').addEventListener('click',()=>{ state.logs.push(row()); renderLog(); });
+  $('dopDownloadBtn').addEventListener('click',downloadCSV);
+  $('dopClearBtn').addEventListener('click',()=>{ state.logs=[]; renderLog(); });
+  window.addEventListener('resize', draw, {passive:true});
+  window.addEventListener('pagehide',()=>{
+    audio.playing = false;
+    if(audio.gain && audio.ctx) audio.gain.gain.setTargetAtTime(0,audio.ctx.currentTime||0,.03);
+  });
+
+  draw();
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
